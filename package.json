@@ -1,0 +1,61 @@
+{
+  "name": "vibeguard",
+  "displayName": "VibeGuard",
+  "description": "Real-time API Key protection for VS Code. Detects hardcoded keys and moves them to .env instantly.",
+  "version": "0.0.1",
+  "publisher": "vibeguard",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vibeguard/vibeguard"
+  },
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other",
+    "Linters"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "VibeGuard",
+      "properties": {
+        "vibeguard.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/Disable VibeGuard scanning."
+        },
+        "vibeguard.variableName": {
+          "type": "string",
+          "default": "OPENAI_API_KEY",
+          "description": "The environment variable name to use when moving keys to .env."
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "vibeguard.moveToEnv",
+        "title": "VibeGuard: Move API Key to .env"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.90.0",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.57.0",
+    "typescript": "^5.0.0"
+  }
+}
