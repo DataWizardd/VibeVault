@@ -1,14 +1,14 @@
-# VibeGuard
+# VibeVault
 
 <div align="center">
 
-![VibeGuard](vibeguard_icon.png)
+![VibeVault](vibevault_icon.png)
 
 **バイブコーディング環境向けのリアルタイム API キー漏洩防止拡張機能。**
 入力した瞬間にハードコードされたシークレットを検出し、ワンクリックで修正します。
 
-[![VS Code](https://img.shields.io/badge/VS%20Code-%5E1.90.0-blue?logo=visualstudiocode)](https://marketplace.visualstudio.com/items?itemName=vibeguard.vibeguard)
-[![Version](https://img.shields.io/badge/version-0.1.2-green)](https://github.com/vibeguard/vibeguard/releases)
+[![VS Code](https://img.shields.io/badge/VS%20Code-%5E1.90.0-blue?logo=visualstudiocode)](https://marketplace.visualstudio.com/items?itemName=vibevault.vibevault)
+[![Version](https://img.shields.io/badge/version-0.1.2-green)](https://github.com/vibevault/vibevault/releases)
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 
 **[English](README.md) · [한국어](README.ko.md) · [中文](README.zh.md) · [Español](README.es.md)**
@@ -17,7 +17,7 @@
 
 ---
 
-## なぜ VibeGuard が必要か？
+## なぜ VibeVault が必要か？
 
 ChatGPT、Claude、Cursor、Copilot などの AI コーディングアシスタントの普及により、経験の少ない開発者でも数時間でサービスをデプロイできるようになりました。
 
@@ -36,7 +36,7 @@ GitHub パブリックリポジトリにプッシュ
 
 [apiradar.live](https://apiradar.live) のようなモニタリングサイトでは、公開リポジトリからの API キー漏洩が**リアルタイム**で集計されており、その大多数が AI 支援プロジェクトによるものです。これはもはや例外的な事象ではありません。
 
-**VibeGuard はこの問題を IDE レベルで遮断します。**
+**VibeVault はこの問題を IDE レベルで遮断します。**
 コードが Git にプッシュされる前に、シークレットを検出して安全に修正します。
 
 ---
@@ -61,7 +61,7 @@ GitHub パブリックリポジトリにプッシュ
 
 ### 2. ワンクリック自動修正（QuickFix）
 
-検出されたシークレット上で `Ctrl+.`（Mac: `Cmd+.`）→ **"VibeGuard: Move to .env"** を選択
+検出されたシークレット上で `Ctrl+.`（Mac: `Cmd+.`）→ **"VibeVault: Move to .env"** を選択
 
 自動処理される内容：
 - **引用符を含む正確な置換**：`"sk-abc..."` → `process.env.OPENAI_API_KEY`
@@ -101,15 +101,15 @@ client = OpenAI(api_key="sk-proj-abc...")
 VS Code 右下のステータスバーに現在のセキュリティ状態をリアルタイム表示：
 
 ```
-$(shield) VibeGuard              ← 問題なし（正常）
-$(shield) VibeGuard: 3 issues   ← 警告（橙色背景）
+$(shield) VibeVault              ← 問題なし（正常）
+$(shield) VibeVault: 3 issues   ← 警告（橙色背景）
 ```
 
 クリックするとワークスペース全体のスキャンが実行されます。
 
 ### 5. ワークスペース全体スキャン
 
-`Ctrl+Shift+P` → **"VibeGuard: Scan Workspace for Secrets"**
+`Ctrl+Shift+P` → **"VibeVault: Scan Workspace for Secrets"**
 
 - `node_modules`、`dist`、`build`、`.git`、ロックファイルを自動除外
 - 進行状況の表示とキャンセルに対応
@@ -125,12 +125,12 @@ $(shield) VibeGuard: 3 issues   ← 警告（橙色背景）
 
 ### VS Code マーケットプレイス
 
-拡張機能パネル（`Ctrl+Shift+X`）で **"VibeGuard"** を検索して **インストール** をクリック。
+拡張機能パネル（`Ctrl+Shift+X`）で **"VibeVault"** を検索して **インストール** をクリック。
 
 ### 手動インストール（VSIX）
 
 ```bash
-code --install-extension vibeguard-0.1.2.vsix
+code --install-extension vibevault-0.1.2.vsix
 ```
 
 ---
@@ -140,7 +140,7 @@ code --install-extension vibeguard-0.1.2.vsix
 1. VS Code でプロジェクトフォルダーを開きます。
 2. AI が生成したコードを貼り付けるか、直接入力します。
 3. ハードコードされたキーが 500ms 以内に赤/黄色の下線で強調表示されます。
-4. `Ctrl+.` → **"VibeGuard: Move to .env"** を選択。
+4. `Ctrl+.` → **"VibeVault: Move to .env"** を選択。
 5. 提案された変数名を確認 → Enter。
 6. 完了。キーは `.env` に保存され、コードは安全な参照に置換されます。
 
@@ -150,8 +150,8 @@ code --install-extension vibeguard-0.1.2.vsix
 
 | 設定 | 型 | デフォルト | 説明 |
 |---|---|---|---|
-| `vibeguard.enable` | boolean | `true` | シークレットスキャンの有効/無効 |
-| `vibeguard.confirmVariableName` | boolean | `true` | 書き込み前に変数名確認ダイアログを表示 |
+| `vibevault.enable` | boolean | `true` | シークレットスキャンの有効/無効 |
+| `vibevault.confirmVariableName` | boolean | `true` | 書き込み前に変数名確認ダイアログを表示 |
 
 ---
 

@@ -1,4 +1,4 @@
-# VibeGuard: API 키 유출 방지 및 자동 격리 시스템
+# VibeVault: API 키 유출 방지 및 자동 격리 시스템
 
 **팀/참가자**: 0x17216Cc00AA1c3e75E
 
@@ -56,13 +56,13 @@ apiradar.live에서 확인할 수 있듯, 이 피해는 지금 이 순간에도 
 
 ## 개선 아이디어 핵심 제안
 
-### VibeGuard: IDE 내장 실시간 시크릿 가드레일
+### VibeVault: IDE 내장 실시간 시크릿 가드레일
 
 **핵심 제안**: 개발자의 작업 흐름을 방해하지 않으면서, 코드 작성 시점에 시크릿 유출을 차단하는 VS Code 확장프로그램.
 
 #### 제안의 논리적 근거
 
-문제는 두 가지 지점에서 발생합니다: ①코드 작성 시 ②Git 커밋/푸시 시. 기존 솔루션(GitHub Secret Scanning, pre-commit hook)은 ②에 집중합니다. VibeGuard는 더 앞선 ①에서 개입합니다.
+문제는 두 가지 지점에서 발생합니다: ①코드 작성 시 ②Git 커밋/푸시 시. 기존 솔루션(GitHub Secret Scanning, pre-commit hook)은 ②에 집중합니다. VibeVault는 더 앞선 ①에서 개입합니다.
 
 **"예방이 치료보다 낫다"**: 한 번 커밋된 API 키는 히스토리에 영구 기록되어, 삭제 후에도 추출 가능합니다. 커밋 전 차단이 근본적 해결책입니다.
 
@@ -84,7 +84,7 @@ apiradar.live에서 확인할 수 있듯, 이 피해는 지금 이 순간에도 
 ```
 하드코딩된 키 발견
   ↓
-[Ctrl+.] → "VibeGuard: Move to .env"
+[Ctrl+.] → "VibeVault: Move to .env"
   ↓
 ① .env 파일에 키 저장 (없으면 자동 생성)
 ② 소스코드를 안전한 환경변수 참조로 교체
@@ -131,7 +131,7 @@ apiradar.live에서 확인할 수 있듯, 이 피해는 지금 이 순간에도 
 client = OpenAI(api_key="sk-proj-XXXXXXXXXXXXXXXXXXXXXXXX")
 ```
 
-**VibeGuard 개입**:
+**VibeVault 개입**:
 1. 타이핑 직후 빨간 밑줄 표시
 2. `Ctrl+.` → "Move to .env" 클릭
 3. 자동 결과:
@@ -148,15 +148,15 @@ client = OpenAI(api_key="sk-proj-XXXXXXXXXXXXXXXXXXXXXXXX")
 
 **상황**: 5인 스타트업 팀이 신규 팀원 온보딩 중. 팀원마다 보안 습관이 다름.
 
-**VibeGuard 적용**: `.vscode/extensions.json`에 VibeGuard를 권장 확장으로 등록.
+**VibeVault 적용**: `.vscode/extensions.json`에 VibeVault를 권장 확장으로 등록.
 
 ```json
 {
-  "recommendations": ["vibeguard.vibeguard"]
+  "recommendations": ["vibevault.vibevault"]
 }
 ```
 
-새 팀원이 저장소를 클론하면 VibeGuard 설치를 자동으로 권장. 팀 전체에 동일한 보안 가드레일 적용.
+새 팀원이 저장소를 클론하면 VibeVault 설치를 자동으로 권장. 팀 전체에 동일한 보안 가드레일 적용.
 
 **기대 효과**:
 - 팀 보안 정책을 문서가 아닌 도구로 강제
@@ -171,7 +171,7 @@ client = OpenAI(api_key="sk-proj-XXXXXXXXXXXXXXXXXXXXXXXX")
 
 ### 정량적 기대 효과
 
-| 지표 | 현황 | VibeGuard 적용 후 |
+| 지표 | 현황 | VibeVault 적용 후 |
 |---|---|---|
 | 코드 작성 시점 유출 예방률 | 0% (도구 없음) | 탐지 패턴 내 ~95% |
 | 시크릿 격리 소요 시간 | 수동: 수 분 ~ 수십 분 | 자동: 3초 이내 |
@@ -190,7 +190,7 @@ client = OpenAI(api_key="sk-proj-XXXXXXXXXXXXXXXXXXXXXXXX")
 
 **2. Git 히스토리 대응 불가**
 
-VibeGuard는 현재 파일의 내용만 검사합니다. 이미 이전 커밋에 포함된 키는 탐지하지 못합니다. Git 히스토리에 포함된 키는 `git filter-repo` 같은 별도 도구가 필요합니다.
+VibeVault는 현재 파일의 내용만 검사합니다. 이미 이전 커밋에 포함된 키는 탐지하지 못합니다. Git 히스토리에 포함된 키는 `git filter-repo` 같은 별도 도구가 필요합니다.
 
 **3. VS Code 에디터 의존성**
 
@@ -214,9 +214,9 @@ VibeGuard는 현재 파일의 내용만 검사합니다. 이미 이전 커밋에
 - **CI/CD 파이프라인 통합**: GitHub Actions 워크플로우로 제공. Pull Request 단계에서 시크릿 포함 코드를 자동 차단.
 
   ```yaml
-  # .github/workflows/vibeguard.yml
-  - name: VibeGuard Secret Scan
-    uses: vibeguard/vibeguard-action@v1
+  # .github/workflows/vibevault.yml
+  - name: VibeVault Secret Scan
+    uses: vibevault/vibevault-action@v1
   ```
 
 - **팀 대시보드**: 조직 전체의 시크릿 탐지 현황을 집계하는 웹 대시보드.
@@ -224,12 +224,12 @@ VibeGuard는 현재 파일의 내용만 검사합니다. 이미 이전 커밋에
 **장기 확장 (구조적·생태계 수준)**
 
 - **AI 코딩 도구 직접 통합**: Cursor, GitHub Copilot 등의 AI 도구가 코드를 생성할 때 시크릿을 처음부터 환경변수 참조로 출력하도록 피드백 루프 구성.
-- **LLM 파인튜닝 데이터셋**: VibeGuard가 수집하는 탐지-수정 패턴을 익명화하여 AI 모델의 보안 코드 생성 능력 향상에 기여.
+- **LLM 파인튜닝 데이터셋**: VibeVault가 수집하는 탐지-수정 패턴을 익명화하여 AI 모델의 보안 코드 생성 능력 향상에 기여.
 - **교육 도구화**: 수정 과정을 통해 개발자가 환경변수 관리 개념을 자연스럽게 학습. 도구 사용 자체가 보안 교육이 되는 구조.
 
 ### 유사 문제로의 확장
 
-VibeGuard의 접근 방식 — **문제가 발생하는 시점(코드 작성)에서 도구 수준으로 개입** — 은 다른 영역에도 적용 가능합니다.
+VibeVault의 접근 방식 — **문제가 발생하는 시점(코드 작성)에서 도구 수준으로 개입** — 은 다른 영역에도 적용 가능합니다.
 
 | 유사 문제 | 확장 적용 |
 |---|---|
@@ -238,4 +238,4 @@ VibeGuard의 접근 방식 — **문제가 발생하는 시점(코드 작성)에
 | 디버그 코드 커밋 | `console.log`, `debugger`, `print` 커밋 전 경고 |
 | 하드코딩된 URL/IP | 환경별 설정을 환경변수로 이동 유도 |
 
-바이브 코딩 시대에 "IDE가 보안의 첫 번째 방어선"이 되어야 한다는 패러다임 전환이 필요합니다. VibeGuard는 그 시작점입니다.
+바이브 코딩 시대에 "IDE가 보안의 첫 번째 방어선"이 되어야 한다는 패러다임 전환이 필요합니다. VibeVault는 그 시작점입니다.

@@ -1,6 +1,6 @@
 # VS Code 확장프로그램 마켓플레이스 배포 가이드
 
-> VibeGuard 기준으로 작성된 실전 가이드입니다.
+> VibeVault 기준으로 작성된 실전 가이드입니다.
 
 ---
 
@@ -42,7 +42,7 @@ npm install -g @vscode/vsce
 
 1. [https://dev.azure.com](https://dev.azure.com) 접속
 2. Microsoft 계정으로 로그인
-3. **"New organization"** 클릭 → 조직 이름 입력 (예: `vibeguard`)
+3. **"New organization"** 클릭 → 조직 이름 입력 (예: `vibevault`)
 4. 조직 생성 완료
 
 ---
@@ -68,8 +68,8 @@ npm install -g @vscode/vsce
 2. Microsoft 계정으로 로그인
 3. **"Create publisher"** 클릭
 4. 다음 항목 입력:
-   - **Publisher ID** (고유 식별자, 변경 불가): 예) `vibeguard`
-   - **Display name**: 예) `VibeGuard`
+   - **Publisher ID** (고유 식별자, 변경 불가): 예) `vibevault`
+   - **Display name**: 예) `VibeVault`
 5. 생성 완료
 
 > `package.json`의 `"publisher"` 필드 값이 이 **Publisher ID** 와 일치해야 합니다.
@@ -82,19 +82,19 @@ npm install -g @vscode/vsce
 
 ```json
 {
-  "name": "vibeguard",
-  "displayName": "VibeGuard",
+  "name": "vibevault",
+  "displayName": "VibeVault",
   "description": "Real-time secret & API key protection for Vibe Coding.",
   "version": "0.1.2",
-  "publisher": "vibeguard",
+  "publisher": "vibevault",
   "engines": {
     "vscode": "^1.90.0"
   },
   "categories": ["Other", "Linters"],
-  "icon": "vibeguard.jpeg",
+  "icon": "vibevault.jpeg",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vibeguard/vibeguard"
+    "url": "https://github.com/vibevault/vibevault"
   },
   "license": "MIT"
 }
@@ -138,7 +138,7 @@ npm run compile
 
 ```bash
 vsce package
-# 결과: vibeguard-0.1.2.vsix
+# 결과: vibevault-0.1.2.vsix
 ```
 
 의존성이 없는 경우 (확장프로그램에 외부 npm 패키지 없을 때):
@@ -170,7 +170,7 @@ PAT 입력 프롬프트가 나오면 [3단계](#3-personal-access-token-pat-발�
 PAT를 미리 저장해두려면:
 
 ```bash
-vsce login vibeguard
+vsce login vibevault
 # 퍼블리셔 이름 입력 후 PAT 입력
 vsce publish
 ```
@@ -192,7 +192,7 @@ vsce publish
 - VS Code에서 검색 확인: 확장 패널 → 확장프로그램 이름 검색
 - 설치 테스트:
   ```bash
-  code --install-extension vibeguard.vibeguard
+  code --install-extension vibevault.vibevault
   ```
 
 ---

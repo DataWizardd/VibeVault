@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to VibeGuard are documented here.
+All notable changes to VibeVault are documented here.
 
 ## [0.1.2] - 2025-02-23
 - Fix: GitHub PAT pattern relaxed from `{36}` to `{35,}` to match all token lengths

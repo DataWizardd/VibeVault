@@ -1,14 +1,14 @@
-# VibeGuard
+# VibeVault
 
 <div align="center">
 
-![VibeGuard](vibeguard_icon.png)
+![VibeVault](vibevault_icon.png)
 
 **Prevención de filtración de claves API en tiempo real para entornos de Vibe Coding.**
 Detecta secretos hardcodeados en el momento en que escribes y los corrige con un solo clic.
 
-[![VS Code](https://img.shields.io/badge/VS%20Code-%5E1.90.0-blue?logo=visualstudiocode)](https://marketplace.visualstudio.com/items?itemName=vibeguard.vibeguard)
-[![Version](https://img.shields.io/badge/version-0.1.2-green)](https://github.com/vibeguard/vibeguard/releases)
+[![VS Code](https://img.shields.io/badge/VS%20Code-%5E1.90.0-blue?logo=visualstudiocode)](https://marketplace.visualstudio.com/items?itemName=vibevault.vibevault)
+[![Version](https://img.shields.io/badge/version-0.1.2-green)](https://github.com/vibevault/vibevault/releases)
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 
 **[English](README.md) · [한국어](README.ko.md) · [中文](README.zh.md) · [日本語](README.ja.md)**
@@ -17,7 +17,7 @@ Detecta secretos hardcodeados en el momento en que escribes y los corrige con un
 
 ---
 
-## ¿Por qué VibeGuard?
+## ¿Por qué VibeVault?
 
 El auge de los asistentes de codificación con IA — ChatGPT, Claude, Cursor, Copilot — ha bajado drásticamente la barrera para publicar software. Un desarrollador con poca experiencia puede desplegar un servicio web en cuestión de horas.
 
@@ -36,7 +36,7 @@ Subida pública a GitHub
 
 Sitios como [apiradar.live](https://apiradar.live) agregan filtraciones de claves API de repositorios públicos **en tiempo real** — la gran mayoría procedentes de proyectos asistidos por IA. Esto ya no es un caso aislado.
 
-**VibeGuard intercepta este problema a nivel de IDE.**
+**VibeVault intercepta este problema a nivel de IDE.**
 Antes de que el código llegue a Git, detecta los secretos expuestos y te guía para corregirlos automáticamente.
 
 ---
@@ -61,7 +61,7 @@ El escaneo se activa en menos de 500ms tras escribir, cubriendo los servicios m�
 
 ### 2. Corrección Automática con Un Clic (QuickFix)
 
-Pulsa `Ctrl+.` (Mac: `Cmd+.`) sobre cualquier secreto detectado → selecciona **"VibeGuard: Move to .env"**
+Pulsa `Ctrl+.` (Mac: `Cmd+.`) sobre cualquier secreto detectado → selecciona **"VibeVault: Move to .env"**
 
 Qué se hace automáticamente:
 - **Reemplazo preciso incluyendo comillas**: `"sk-abc..."` → `process.env.OPENAI_API_KEY`
@@ -101,15 +101,15 @@ client = OpenAI(api_key="sk-proj-abc...")
 Indicador de seguridad en vivo en la barra de estado de VS Code (parte inferior derecha):
 
 ```
-$(shield) VibeGuard              ← Todo en orden
-$(shield) VibeGuard: 3 issues   ← Advertencia (fondo ámbar)
+$(shield) VibeVault              ← Todo en orden
+$(shield) VibeVault: 3 issues   ← Advertencia (fondo ámbar)
 ```
 
 Haz clic para lanzar un escaneo completo del workspace.
 
 ### 5. Escaneo Completo del Workspace
 
-`Ctrl+Shift+P` → **"VibeGuard: Scan Workspace for Secrets"**
+`Ctrl+Shift+P` → **"VibeVault: Scan Workspace for Secrets"**
 
 - Excluye automáticamente `node_modules`, `dist`, `build`, `.git` y archivos de bloqueo
 - Indicador de progreso con soporte para cancelación
@@ -117,7 +117,7 @@ Haz clic para lanzar un escaneo completo del workspace.
 
 ### 6. Verificación de `.gitignore` al Iniciar
 
-Al abrir el workspace, si existe un archivo `.env` pero no está en `.gitignore`, VibeGuard te advierte inmediatamente y ofrece añadirlo.
+Al abrir el workspace, si existe un archivo `.env` pero no está en `.gitignore`, VibeVault te advierte inmediatamente y ofrece añadirlo.
 
 ---
 
@@ -125,12 +125,12 @@ Al abrir el workspace, si existe un archivo `.env` pero no está en `.gitignore`
 
 ### Desde VS Code Marketplace
 
-Busca **"VibeGuard"** en el panel de extensiones (`Ctrl+Shift+X`) y haz clic en **Instalar**.
+Busca **"VibeVault"** en el panel de extensiones (`Ctrl+Shift+X`) y haz clic en **Instalar**.
 
 ### Instalación Manual (VSIX)
 
 ```bash
-code --install-extension vibeguard-0.1.2.vsix
+code --install-extension vibevault-0.1.2.vsix
 ```
 
 ---
@@ -140,7 +140,7 @@ code --install-extension vibeguard-0.1.2.vsix
 1. Abre la carpeta del proyecto en VS Code.
 2. Pega o escribe código generado por IA que contenga claves API.
 3. Los secretos hardcodeados aparecen subrayados en rojo/amarillo en menos de 500ms.
-4. Pulsa `Ctrl+.` → selecciona **"VibeGuard: Move to .env"**.
+4. Pulsa `Ctrl+.` → selecciona **"VibeVault: Move to .env"**.
 5. Confirma el nombre de variable sugerido → pulsa Enter.
 6. Listo. La clave se escribe en `.env` y el código se actualiza con una referencia segura.
 
@@ -150,8 +150,8 @@ code --install-extension vibeguard-0.1.2.vsix
 
 | Ajuste | Tipo | Valor por defecto | Descripción |
 |---|---|---|---|
-| `vibeguard.enable` | boolean | `true` | Activar o desactivar el escaneo de secretos |
-| `vibeguard.confirmVariableName` | boolean | `true` | Mostrar cuadro de confirmación de nombre de variable antes de escribir |
+| `vibevault.enable` | boolean | `true` | Activar o desactivar el escaneo de secretos |
+| `vibevault.confirmVariableName` | boolean | `true` | Mostrar cuadro de confirmación de nombre de variable antes de escribir |
 
 ---
 

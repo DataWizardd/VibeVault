@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(echo:*)",
+      "Bash(test:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run compile:*)",
+      "Bash(node:*)",
+      "Bash(vsce package:*)",
+      "Bash(code --uninstall-extension:*)",
+      "Bash(code --install-extension:*)",
+      "Bash(cd:*)",
+      "Bash(cd /c/Users/JH/dacon/vibe/vibeguard && cp vibeguard_icon.png vibevault_icon.png && vsce package --no-dependencies 2>&1)"
+    ]
+  }
+}

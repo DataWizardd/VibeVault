@@ -1,14 +1,14 @@
-# VibeGuard
+# VibeVault
 
 <div align="center">
 
-![VibeGuard](vibeguard_icon.png)
+![VibeVault](vibevault_icon.png)
 
 **为 Vibe Coding 环境打造的实时 API 密钥泄露防护扩展。**
 在您输入代码的瞬间检测硬编码的密钥，并支持一键自动修复。
 
-[![VS Code](https://img.shields.io/badge/VS%20Code-%5E1.90.0-blue?logo=visualstudiocode)](https://marketplace.visualstudio.com/items?itemName=vibeguard.vibeguard)
-[![Version](https://img.shields.io/badge/version-0.1.2-green)](https://github.com/vibeguard/vibeguard/releases)
+[![VS Code](https://img.shields.io/badge/VS%20Code-%5E1.90.0-blue?logo=visualstudiocode)](https://marketplace.visualstudio.com/items?itemName=vibevault.vibevault)
+[![Version](https://img.shields.io/badge/version-0.1.2-green)](https://github.com/vibevault/vibevault/releases)
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 
 **[English](README.md) · [한국어](README.ko.md) · [日本語](README.ja.md) · [Español](README.es.md)**
@@ -17,7 +17,7 @@
 
 ---
 
-## 为什么需要 VibeGuard？
+## 为什么需要 VibeVault？
 
 随着 ChatGPT、Claude、Cursor、Copilot 等 AI 编程助手的普及，即使是经验不足的开发者也能在数小时内上线一个 Web 服务。
 
@@ -36,7 +36,7 @@ AI 编程助手
 
 [apiradar.live](https://apiradar.live) 等监控网站**实时**汇总来自公开仓库的 API 密钥泄露事件，其中绝大多数来自 AI 辅助项目。这已不再是小概率事件。
 
-**VibeGuard 在 IDE 层面拦截这一问题。**
+**VibeVault 在 IDE 层面拦截这一问题。**
 在代码提交到 Git 之前，自动检测并修复暴露的密钥。
 
 ---
@@ -61,7 +61,7 @@ AI 编程助手
 
 ### 2. 一键自动修复（QuickFix）
 
-在检测到的密钥处按 `Ctrl+.`（Mac：`Cmd+.`）→ 选择 **"VibeGuard: Move to .env"**
+在检测到的密钥处按 `Ctrl+.`（Mac：`Cmd+.`）→ 选择 **"VibeVault: Move to .env"**
 
 自动处理内容：
 - **精确替换（含引号）**：`"sk-abc..."` → `process.env.OPENAI_API_KEY`
@@ -101,15 +101,15 @@ client = OpenAI(api_key="sk-proj-abc...")
 在 VS Code 右下角状态栏实时显示当前安全状态：
 
 ```
-$(shield) VibeGuard              ← 无问题（正常）
-$(shield) VibeGuard: 3 issues   ← 警告（橙色背景）
+$(shield) VibeVault              ← 无问题（正常）
+$(shield) VibeVault: 3 issues   ← 警告（橙色背景）
 ```
 
 点击即可触发全工作区扫描。
 
 ### 5. 全工作区扫描
 
-`Ctrl+Shift+P` → **"VibeGuard: Scan Workspace for Secrets"**
+`Ctrl+Shift+P` → **"VibeVault: Scan Workspace for Secrets"**
 
 - 自动排除 `node_modules`、`dist`、`build`、`.git`、锁文件
 - 支持进度显示与取消
@@ -117,7 +117,7 @@ $(shield) VibeGuard: 3 issues   ← 警告（橙色背景）
 
 ### 6. 启动时 `.gitignore` 自动检查
 
-打开工作区时，若存在 `.env` 文件但未在 `.gitignore` 中列出，VibeGuard 会立即发出警告并提供自动添加选项。
+打开工作区时，若存在 `.env` 文件但未在 `.gitignore` 中列出，VibeVault 会立即发出警告并提供自动添加选项。
 
 ---
 
@@ -125,12 +125,12 @@ $(shield) VibeGuard: 3 issues   ← 警告（橙色背景）
 
 ### VS Code 扩展市场
 
-在扩展面板（`Ctrl+Shift+X`）搜索 **"VibeGuard"** 并点击 **安装**。
+在扩展面板（`Ctrl+Shift+X`）搜索 **"VibeVault"** 并点击 **安装**。
 
 ### 手动安装（VSIX）
 
 ```bash
-code --install-extension vibeguard-0.1.2.vsix
+code --install-extension vibevault-0.1.2.vsix
 ```
 
 ---
@@ -140,7 +140,7 @@ code --install-extension vibeguard-0.1.2.vsix
 1. 在 VS Code 中打开项目文件夹。
 2. 粘贴或编写包含 API 密钥的 AI 生成代码。
 3. 硬编码的密钥在 500ms 内出现红/黄色下划线。
-4. 按 `Ctrl+.` → 选择 **"VibeGuard: Move to .env"**。
+4. 按 `Ctrl+.` → 选择 **"VibeVault: Move to .env"**。
 5. 确认建议的变量名 → 按 Enter。
 6. 完成。密钥已写入 `.env`，代码已替换为安全引用。
 
@@ -150,8 +150,8 @@ code --install-extension vibeguard-0.1.2.vsix
 
 | 设置项 | 类型 | 默认值 | 说明 |
 |---|---|---|---|
-| `vibeguard.enable` | boolean | `true` | 启用/禁用密钥扫描 |
-| `vibeguard.confirmVariableName` | boolean | `true` | 写入前显示变量名确认输入框 |
+| `vibevault.enable` | boolean | `true` | 启用/禁用密钥扫描 |
+| `vibevault.confirmVariableName` | boolean | `true` | 写入前显示变量名确认输入框 |
 
 ---
 

@@ -1,13 +1,13 @@
 {
-  "name": "vibeguard",
-  "displayName": "VibeGuard",
+  "name": "vibevault",
+  "displayName": "VibeVault",
   "description": "Real-time secret & API key protection for Vibe Coding. Detects hardcoded keys and moves them to .env instantly.",
   "version": "0.1.2",
-  "publisher": "vibeguard",
-  "icon": "vibeguard_icon.png",
+  "publisher": "vibevault",
+  "icon": "vibevault_icon.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vibeguard/vibeguard"
+    "url": "https://github.com/vibevault/vibevault"
   },
   "engines": {
     "vscode": "^1.90.0"
@@ -22,14 +22,14 @@
   "main": "./out/extension.js",
   "contributes": {
     "configuration": {
-      "title": "VibeGuard",
+      "title": "VibeVault",
       "properties": {
-        "vibeguard.enable": {
+        "vibevault.enable": {
           "type": "boolean",
           "default": true,
-          "description": "Enable/disable VibeGuard secret scanning."
+          "description": "Enable/disable VibeVault secret scanning."
         },
-        "vibeguard.confirmVariableName": {
+        "vibevault.confirmVariableName": {
           "type": "boolean",
           "default": true,
           "description": "Show an input box to confirm/edit the environment variable name when moving a secret to .env."
@@ -38,12 +38,12 @@
     },
     "commands": [
       {
-        "command": "vibeguard.moveToEnv",
-        "title": "VibeGuard: Move Secret to .env"
+        "command": "vibevault.moveToEnv",
+        "title": "VibeVault: Move Secret to .env"
       },
       {
-        "command": "vibeguard.scanWorkspace",
-        "title": "VibeGuard: Scan Workspace for Secrets"
+        "command": "vibevault.scanWorkspace",
+        "title": "VibeVault: Scan Workspace for Secrets"
       }
     ]
   },

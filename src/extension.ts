@@ -96,13 +96,13 @@ const debounceTimers = new Map<string, ReturnType<typeof setTimeout>>();
 // ==================== Activation ====================
 
 export function activate(context: vscode.ExtensionContext) {
-    console.log('VibeGuard is now active!');
+    console.log('VibeVault is now active!');
 
-    diagnosticCollection = vscode.languages.createDiagnosticCollection('vibeguard');
+    diagnosticCollection = vscode.languages.createDiagnosticCollection('vibevault');
     context.subscriptions.push(diagnosticCollection);
 
     statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
-    statusBarItem.command = 'vibeguard.scanWorkspace';
+    statusBarItem.command = 'vibevault.scanWorkspace';
     updateStatusBar(0);
     statusBarItem.show();
     context.subscriptions.push(statusBarItem);
@@ -121,30 +121,30 @@ export function activate(context: vscode.ExtensionContext) {
             }
         }),
         vscode.workspace.onDidChangeConfiguration(e => {
-            if (e.affectsConfiguration('vibeguard')) { refreshAllOpenDocuments(); }
+            if (e.affectsConfiguration('vibevault')) { refreshAllOpenDocuments(); }
         })
     );
 
     context.subscriptions.push(
         vscode.languages.registerCodeActionsProvider(
             '*',
-            new VibeGuardCodeActionProvider(),
+            new VibeVaultCodeActionProvider(),
             { providedCodeActionKinds: [vscode.CodeActionKind.QuickFix] }
         )
     );
 
     context.subscriptions.push(
         vscode.commands.registerCommand(
-            'vibeguard.moveToEnv',
+            'vibevault.moveToEnv',
             async (uri: any, range: any, patternId: string, keyValue: string) => {
                 try {
                     await moveToEnv(resolveUri(uri), resolveRange(range), patternId, keyValue);
                 } catch (err) {
-                    vscode.window.showErrorMessage(`VibeGuard Error: ${err}`);
+                    vscode.window.showErrorMessage(`VibeVault Error: ${err}`);
                 }
             }
         ),
-        vscode.commands.registerCommand('vibeguard.scanWorkspace', scanWorkspace)
+        vscode.commands.registerCommand('vibevault.scanWorkspace', scanWorkspace)
     );
 }
 
@@ -174,7 +174,7 @@ function refreshDiagnosticsDebounced(doc: vscode.TextDocument): void {
 }
 
 function refreshDiagnostics(doc: vscode.TextDocument): void {
-    const config = vscode.workspace.getConfiguration('vibeguard');
+    const config = vscode.workspace.getConfiguration('vibevault');
     if (!config.get<boolean>('enable', true)) {
         diagnosticCollection.clear();
         updateStatusBar(0);
@@ -198,11 +198,11 @@ function refreshDiagnostics(doc: vscode.TextDocument): void {
             const endPos = doc.positionAt(match.index + match[0].length);
             const diagnostic = new vscode.Diagnostic(
                 new vscode.Range(startPos, endPos),
-                `VibeGuard: ${pattern.name} hardcoded! Move to .env to prevent leaks.`,
+                `VibeVault: ${pattern.name} hardcoded! Move to .env to prevent leaks.`,
                 pattern.severity
             );
             diagnostic.code = pattern.id;
-            diagnostic.source = 'VibeGuard';
+            diagnostic.source = 'VibeVault';
             diagnostics.push(diagnostic);
         }
     }
@@ -225,11 +225,11 @@ function refreshDiagnostics(doc: vscode.TextDocument): void {
 
         const diagnostic = new vscode.Diagnostic(
             range,
-            'VibeGuard: Hardcoded secret in variable assignment! Move to .env for security.',
+            'VibeVault: Hardcoded secret in variable assignment! Move to .env for security.',
             vscode.DiagnosticSeverity.Warning
         );
         diagnostic.code = 'generic-secret';
-        diagnostic.source = 'VibeGuard';
+        diagnostic.source = 'VibeVault';
         diagnostics.push(diagnostic);
     }
 
@@ -250,12 +250,12 @@ function updateTotalIssueCount(): void {
 
 function updateStatusBar(count: number): void {
     if (count === 0) {
-        statusBarItem.text = '$(shield) VibeGuard';
-        statusBarItem.tooltip = 'VibeGuard: No secrets detected. Click to scan workspace.';
+        statusBarItem.text = '$(shield) VibeVault';
+        statusBarItem.tooltip = 'VibeVault: No secrets detected. Click to scan workspace.';
         statusBarItem.backgroundColor = undefined;
     } else {
-        statusBarItem.text = `$(shield) VibeGuard: ${count} issue${count !== 1 ? 's' : ''}`;
-        statusBarItem.tooltip = `VibeGuard: ${count} hardcoded secret${count !== 1 ? 's' : ''} detected! Click to scan workspace.`;
+        statusBarItem.text = `$(shield) VibeVault: ${count} issue${count !== 1 ? 's' : ''}`;
+        statusBarItem.tooltip = `VibeVault: ${count} hardcoded secret${count !== 1 ? 's' : ''} detected! Click to scan workspace.`;
         statusBarItem.backgroundColor = new vscode.ThemeColor('statusBarItem.warningBackground');
     }
 }
@@ -266,7 +266,7 @@ function refreshAllOpenDocuments(): void {
 
 // ==================== Code Action Provider ====================
 
-class VibeGuardCodeActionProvider implements vscode.CodeActionProvider {
+class VibeVaultCodeActionProvider implements vscode.CodeActionProvider {
     provideCodeActions(
         document: vscode.TextDocument,
         _range: vscode.Range | vscode.Selection,
@@ -274,12 +274,12 @@ class VibeGuardCodeActionProvider implements vscode.CodeActionProvider {
         _token: vscode.CancellationToken
     ): vscode.ProviderResult<(vscode.Command | vscode.CodeAction)[]> {
         return context.diagnostics
-            .filter(d => d.source === 'VibeGuard')
+            .filter(d => d.source === 'VibeVault')
             .map(diagnostic => this.createFix(document, diagnostic));
     }
 
     private createFix(document: vscode.TextDocument, diagnostic: vscode.Diagnostic): vscode.CodeAction {
-        const fix = new vscode.CodeAction('VibeGuard: Move to .env', vscode.CodeActionKind.QuickFix);
+        const fix = new vscode.CodeAction('VibeVault: Move to .env', vscode.CodeActionKind.QuickFix);
         fix.diagnostics = [diagnostic];
         fix.isPreferred = true;
 
@@ -287,7 +287,7 @@ class VibeGuardCodeActionProvider implements vscode.CodeActionProvider {
         const patternId = typeof diagnostic.code === 'string' ? diagnostic.code : 'unknown';
 
         fix.command = {
-            command: 'vibeguard.moveToEnv',
+            command: 'vibevault.moveToEnv',
             title: 'Move to .env',
             arguments: [document.uri, diagnostic.range, patternId, keyValue],
         };
@@ -307,7 +307,7 @@ async function moveToEnv(
     const document = await vscode.workspace.openTextDocument(uri);
 
     const suggestedName = inferEnvVarName(document, range, patternId);
-    const config = vscode.workspace.getConfiguration('vibeguard');
+    const config = vscode.workspace.getConfiguration('vibevault');
     let varName: string;
 
     if (config.get<boolean>('confirmVariableName', true)) {
@@ -325,7 +325,7 @@ async function moveToEnv(
 
     const root = getWorkspaceRoot();
     if (!root) {
-        vscode.window.showWarningMessage('VibeGuard: No workspace folder open. Cannot save to .env');
+        vscode.window.showWarningMessage('VibeVault: No workspace folder open. Cannot save to .env');
         return;
     }
 
@@ -350,7 +350,7 @@ async function moveToEnv(
 
     if (/\.go$/.test(uri.fsPath)) {
         if (!/"os"/.test(docAfterKeyEdit.getText())) {
-            vscode.window.showInformationMessage('VibeGuard: Add `import "os"` to your Go file.');
+            vscode.window.showInformationMessage('VibeVault: Add `import "os"` to your Go file.');
         }
     }
 
@@ -360,7 +360,7 @@ async function moveToEnv(
 
     const openBtn = 'Open .env';
     const msg = await vscode.window.showInformationMessage(
-        `VibeGuard: ${actualVarName} saved to .env${renamedNote} and code updated.`,
+        `VibeVault: ${actualVarName} saved to .env${renamedNote} and code updated.`,
         openBtn
     );
     if (msg === openBtn) {
@@ -510,14 +510,14 @@ function escapeRegex(str: string): string {
 async function scanWorkspace(): Promise<void> {
     const root = getWorkspaceRoot();
     if (!root) {
-        vscode.window.showWarningMessage('VibeGuard: No workspace folder open.');
+        vscode.window.showWarningMessage('VibeVault: No workspace folder open.');
         return;
     }
 
     await vscode.window.withProgress(
         {
             location: vscode.ProgressLocation.Notification,
-            title: 'VibeGuard: Scanning workspace...',
+            title: 'VibeVault: Scanning workspace...',
             cancellable: true,
         },
         async (progress, token) => {
@@ -544,7 +544,7 @@ async function scanWorkspace(): Promise<void> {
 
             updateTotalIssueCount();
             vscode.window.showInformationMessage(
-                `VibeGuard: Scanned ${scanned} files — ${totalIssueCount} issue${totalIssueCount !== 1 ? 's' : ''} found.`
+                `VibeVault: Scanned ${scanned} files — ${totalIssueCount} issue${totalIssueCount !== 1 ? 's' : ''} found.`
             );
         }
     );
@@ -569,7 +569,7 @@ async function ensureGitignore(root: string): Promise<void> {
         gitignoreUri,
         Buffer.from(content + prefix + '.env\n', 'utf8')
     );
-    vscode.window.showInformationMessage('VibeGuard: Added .env to .gitignore');
+    vscode.window.showInformationMessage('VibeVault: Added .env to .gitignore');
 }
 
 async function checkGitignoreOnStartup(): Promise<void> {
@@ -595,7 +595,7 @@ async function checkGitignoreOnStartup(): Promise<void> {
     if (!hasEnvEntry) {
         const addBtn = 'Add to .gitignore';
         const choice = await vscode.window.showWarningMessage(
-            'VibeGuard: .env file found but not in .gitignore! Your secrets may be exposed.',
+            'VibeVault: .env file found but not in .gitignore! Your secrets may be exposed.',
             addBtn
         );
         if (choice === addBtn) { await ensureGitignore(root); }
