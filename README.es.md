@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![VibeGuard](vibeguard_icon.jpeg)
+![VibeGuard](vibeguard_icon.png)
 
 **Prevención de filtración de claves API en tiempo real para entornos de Vibe Coding.**
 Detecta secretos hardcodeados en el momento en que escribes y los corrige con un solo clic.

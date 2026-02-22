@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![VibeGuard](vibeguard_icon.jpeg)
+![VibeGuard](vibeguard_icon.png)
 
 **为 Vibe Coding 环境打造的实时 API 密钥泄露防护扩展。**
 在您输入代码的瞬间检测硬编码的密钥，并支持一键自动修复。

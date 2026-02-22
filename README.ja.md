@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![VibeGuard](vibeguard_icon.jpeg)
+![VibeGuard](vibeguard_icon.png)
 
 **バイブコーディング環境向けのリアルタイム API キー漏洩防止拡張機能。**
 入力した瞬間にハードコードされたシークレットを検出し、ワンクリックで修正します。
