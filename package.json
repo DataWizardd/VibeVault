@@ -4,7 +4,7 @@
   "description": "Real-time secret & API key protection for Vibe Coding. Detects hardcoded keys and moves them to .env instantly.",
   "version": "0.1.2",
   "publisher": "vibeguard",
-  "icon": "vibeguard.jpeg",
+  "icon": "vibeguard_icon.jpeg",
   "repository": {
     "type": "git",
     "url": "https://github.com/vibeguard/vibeguard"

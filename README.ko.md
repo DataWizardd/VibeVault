@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![VibeGuard](vibeguard.jpeg)
+![VibeGuard](vibeguard_icon.jpeg)
 
 **바이브 코딩 환경을 위한 실시간 API 키 유출 방지 확장프로그램.**
 입력하는 순간 하드코딩된 시크릿을 탐지하고 원클릭으로 수정합니다.

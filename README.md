@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![VibeGuard](vibeguard.jpeg)
+![VibeGuard](vibeguard_icon.jpeg)
 
 **Real-time API key leak prevention for Vibe Coding environments.**
 Detects hardcoded secrets the moment you type — and fixes them in one click.
