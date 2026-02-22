@@ -1,9 +1,10 @@
 {
   "name": "vibeguard",
   "displayName": "VibeGuard",
-  "description": "Real-time API Key protection for VS Code. Detects hardcoded keys and moves them to .env instantly.",
-  "version": "0.0.1",
+  "description": "Real-time secret & API key protection for Vibe Coding. Detects hardcoded keys and moves them to .env instantly.",
+  "version": "0.1.2",
   "publisher": "vibeguard",
+  "icon": "vibeguard.jpeg",
   "repository": {
     "type": "git",
     "url": "https://github.com/vibeguard/vibeguard"
@@ -26,19 +27,23 @@
         "vibeguard.enable": {
           "type": "boolean",
           "default": true,
-          "description": "Enable/Disable VibeGuard scanning."
+          "description": "Enable/disable VibeGuard secret scanning."
         },
-        "vibeguard.variableName": {
-          "type": "string",
-          "default": "OPENAI_API_KEY",
-          "description": "The environment variable name to use when moving keys to .env."
+        "vibeguard.confirmVariableName": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show an input box to confirm/edit the environment variable name when moving a secret to .env."
         }
       }
     },
     "commands": [
       {
         "command": "vibeguard.moveToEnv",
-        "title": "VibeGuard: Move API Key to .env"
+        "title": "VibeGuard: Move Secret to .env"
+      },
+      {
+        "command": "vibeguard.scanWorkspace",
+        "title": "VibeGuard: Scan Workspace for Secrets"
       }
     ]
   },
