@@ -34,7 +34,7 @@ Public GitHub push
   └─ Exposed API key → financial loss / service abuse / account compromise
 ```
 
-Sites like [apiradar.live](https://apiradar.live) aggregate API key leaks from public repositories **in real time** — the vast majority originating from AI-assisted projects. This is no longer an edge case.
+Public API key leak trackers aggregate hundreds of new exposures from public repositories every day — the vast majority originating from AI-assisted projects. This is no longer an edge case.
 
 **VibeVault intercepts this problem at the IDE level.**
 Before the code hits Git, VibeVault detects exposed secrets and guides you to fix them automatically.
@@ -64,7 +64,7 @@ Scanning triggers within 500ms of typing, covering the most common services used
 Press `Ctrl+.` (Mac: `Cmd+.`) on any flagged secret → select **"VibeVault: Move to .env"**
 
 What happens automatically:
-- **Precise replacement including surrounding quotes**: `"sk-abc..."` → `process.env.OPENAI_API_KEY`
+- **Precise replacement including surrounding quotes**: `"<your-key>"` → `process.env.OPENAI_API_KEY`
 - **Language-appropriate syntax** with auto-inserted imports:
 
   ```python
@@ -105,10 +105,10 @@ What happens automatically:
 VibeVault analyzes the surrounding code to suggest a meaningful variable name.
 
 ```python
-my_openai_key = "sk-proj-abc..."
+my_openai_key = "••••••••••••••••••••"
 # Suggested: MY_OPENAI_KEY
 
-client = OpenAI(api_key="sk-proj-abc...")
+client = OpenAI(api_key="••••••••••••••••••••")
 # Suggested: API_KEY  (inferred from `api_key`, not `client`)
 ```
 
