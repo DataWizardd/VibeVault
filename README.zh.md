@@ -130,7 +130,7 @@ $(shield) VibeVault: 3 issues   ← 警告（橙色背景）
 ### 手动安装（VSIX）
 
 ```bash
-code --install-extension vibevault-0.1.2.vsix
+code --install-extension vibevault-0.1.3.vsix
 ```
 
 ---

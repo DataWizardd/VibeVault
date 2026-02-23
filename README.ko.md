@@ -146,7 +146,7 @@ $(shield) VibeVault: 3 issues   ← 경고 (주황색 배경)
 ### 수동 설치 (VSIX)
 
 ```bash
-code --install-extension vibevault-0.1.2.vsix
+code --install-extension vibevault-0.1.3.vsix
 ```
 
 ---

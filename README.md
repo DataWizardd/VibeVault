@@ -146,7 +146,7 @@ Search **"VibeVault"** in the Extensions panel (`Ctrl+Shift+X`) and click **Inst
 ### Manual (VSIX)
 
 ```bash
-code --install-extension vibevault-0.1.2.vsix
+code --install-extension vibevault-0.1.3.vsix
 ```
 
 ---
@@ -191,6 +191,10 @@ code --install-extension vibevault-0.1.2.vsix
 ---
 
 ## Release Notes
+
+### 0.1.3
+- Fix: Correct GitHub repository URL in package.json and all README files
+- Fix: Language README links (Korean, Chinese, Japanese, Spanish) returning 404 on Marketplace
 
 ### 0.1.2
 - Fix: GitHub PAT pattern relaxed from `{36}` to `{35,}` to match all token lengths

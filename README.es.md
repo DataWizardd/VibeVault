@@ -130,7 +130,7 @@ Busca **"VibeVault"** en el panel de extensiones (`Ctrl+Shift+X`) y haz clic en 
 ### Instalación Manual (VSIX)
 
 ```bash
-code --install-extension vibevault-0.1.2.vsix
+code --install-extension vibevault-0.1.3.vsix
 ```
 
 ---
