@@ -8,7 +8,7 @@
 入力した瞬間にハードコードされたシークレットを検出し、ワンクリックで修正します。
 
 [![VS Code](https://img.shields.io/badge/VS%20Code-%5E1.90.0-blue?logo=visualstudiocode)](https://marketplace.visualstudio.com/items?itemName=vibevault.vibevault)
-[![Version](https://img.shields.io/badge/version-0.1.2-green)](https://github.com/vibevault/vibevault/releases)
+[![Version](https://img.shields.io/badge/version-0.1.3-green)](https://github.com/DataWizardd/VibeVault/releases)
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 
 **[English](README.md) · [한국어](README.ko.md) · [中文](README.zh.md) · [Español](README.es.md)**

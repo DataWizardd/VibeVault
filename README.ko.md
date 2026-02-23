@@ -8,7 +8,7 @@
 입력하는 순간 하드코딩된 시크릿을 탐지하고 원클릭으로 수정합니다.
 
 [![VS Code](https://img.shields.io/badge/VS%20Code-%5E1.90.0-blue?logo=visualstudiocode)](https://marketplace.visualstudio.com/items?itemName=vibevault.vibevault)
-[![Version](https://img.shields.io/badge/version-0.1.2-green)](https://github.com/vibevault/vibevault/releases)
+[![Version](https://img.shields.io/badge/version-0.1.3-green)](https://github.com/DataWizardd/VibeVault/releases)
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 
 **[English](README.md) · [中文](README.zh.md) · [日本語](README.ja.md) · [Español](README.es.md)**

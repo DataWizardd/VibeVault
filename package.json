@@ -2,12 +2,12 @@
   "name": "vibevault",
   "displayName": "VibeVault",
   "description": "Real-time secret & API key protection for Vibe Coding. Detects hardcoded keys and moves them to .env instantly.",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "publisher": "vibevault",
   "icon": "vibevault_icon.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vibevault/vibevault"
+    "url": "https://github.com/DataWizardd/VibeVault"
   },
   "engines": {
     "vscode": "^1.90.0"
